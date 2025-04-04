@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#121212">
+    <meta name="description" content="Portfolio of photography and videography work by Insomnia Digital Media - serving Eastern Kentucky, Southern West Virginia, Ohio, and East Tennessee.">
+    <title>Portfolio - Insomnia Digital Media</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-purple: #7c68ee;
+            --secondary-purple: #9370db;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --text-light: #f8f8f8;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                repeating-linear-gradient(115deg, 
+                rgba(0, 0, 0, 0.3) 0px, 
+                rgba(0, 0, 0, 0.3) 2px, 
+                transparent 2px, 
+                transparent 4px),
+                linear-gradient(to bottom, var(--dark-bg), var(--darker-bg));
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 0.8rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary-purple);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        .page-header {
+            padding-top: 150px;
+            padding-bottom: 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), var(--dark-bg));
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, var(--primary-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .portfolio-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+        }
+        
+        .construction-notice {
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            background-color: rgba(124, 104, 238, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(124, 104, 238, 0.2);
+        }
+        
+        .notice-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+        }
+        
+        .notice-text {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Portfolio Gallery */
+        .portfolio-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 300px;
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(124, 104, 238, 0.4);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* Categories */
+        .portfolio-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(124, 104, 238, 0.1);
+            border: 1px solid rgba(124, 104, 238, 0.3);
+            border-radius: 30px;
+            color: var(--text-light);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary-purple);
+            border-color: var(--primary-purple);
+            box-shadow: 0 5px 15px rgba(124, 104, 238, 0.3);
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            object-position: top center;
+            border: 3px solid rgba(124, 104, 238, 0.3);
+            box-shadow: 0 0 30px rgba(124, 104, 238, 0.5);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 2001;
+        }
+        
+        .lightbox-close:hover {
+            background-color: rgba(124, 104, 238, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .lightbox-next, .lightbox-prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 2001;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next:hover, .lightbox-prev:hover {
+            background-color: rgba(124, 104, 238, 0.8);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-purple), transparent);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            height: 80px;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-purple), var(--secondary-purple));
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(124, 104, 238, 0.5);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fadeIn {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+        .delay-6 { animation-delay: 1.2s; }
+        .delay-7 { animation-delay: 1.4s; }
+        .delay-8 { animation-delay: 1.6s; }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-auto-rows: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 0.8rem;
+            }
+            
+            .logo {
+                height: 40px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.3rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .page-header {
+                padding-top: 120px;
+            }
+            
+            .notice-title {
+                font-size: 1.3rem;
+            }
+            
+            .notice-text {
+                font-size: 1rem;
+            }
+            
+            .portfolio-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-auto-rows: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .portfolio-section {
+                padding: 1rem 1rem 4rem;
+            }
+            
+            .portfolio-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+                gap: 0.8rem;
+            }
+            
+            .construction-notice {
+                padding: 1.5rem 1rem;
+            }
+            
+            .category-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .portfolio-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 130px;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html"><img src="images/whitelogo.png" alt="Insomnia Digital Media" class="logo"></a>
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="how-to-book.html">HOW TO BOOK</a>
+                <a href="portfolio.html" class="active">PORTFOLIO</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="page-title">Portfolio</h1>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <!-- Under Construction Notice -->
+        <div class="construction-notice fadeIn">
+            <h2 class="notice-title">portfolio under construction</h2>
+            <p class="notice-text">
+                our portfolio is currently being updated as more client photos are taken. for now, you can explore some of our work below. check back soon for more additions!
+            </p>
+        </div>
+        
+        <!-- Portfolio Categories (for future use) -->
+        <div class="portfolio-categories fadeIn delay-1">
+            <button class="category-btn active">all</button>
+            <button class="category-btn">portraits</button>
+            <button class="category-btn">events</button>
+            <button class="category-btn">sports</button>
+            <button class="category-btn">lifestyle</button>
+            <button class="category-btn">video</button>
+        </div>
+        
+        <!-- Portfolio Gallery -->
+        <div class="portfolio-gallery">
+            <div class="gallery-item fadeIn delay-1" data-src="images/DSC00750.jpg">
+                <img src="images/DSC00750.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+            <div class="gallery-item fadeIn delay-2" data-src="images/DSC00767.jpg">
+                <img src="images/DSC00767.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+            <div class="gallery-item fadeIn delay-3" data-src="images/DSC01824.jpg">
+                <img src="images/DSC01824.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+            <div class="gallery-item fadeIn delay-4" data-src="images/DSC03133.jpg">
+                <img src="images/DSC03133.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+            <div class="gallery-item fadeIn delay-5" data-src="images/DSC03446.jpg">
+                <img src="images/DSC03446.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+            <div class="gallery-item fadeIn delay-6" data-src="images/DSC03660.jpg">
+                <img src="images/DSC03660.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+            <div class="gallery-item fadeIn delay-7" data-src="images/DSC05298.jpg">
+                <img src="images/DSC05298.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+            <div class="gallery-item fadeIn delay-8" data-src="images/DSC05992.jpg">
+                <img src="images/DSC05992.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lightbox Structure -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="Enlarged portfolio image">
+        </div>
+        <div class="lightbox-close">&times;</div>
+        <div class="lightbox-next">&rsaquo;</div>
+        <div class="lightbox-prev">&lsaquo;</div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="images/whitelogo.png" alt="Insomnia Digital Media" class="footer-logo">
+            <div class="social-links">
+                <a href="https://www.facebook.com/insomniaDM" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p class="copyright">© 2025 insomnia digital media. all rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Font Awesome for Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- Lightbox JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            let currentIndex = 0;
+            
+            // Open lightbox when a gallery item is clicked
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                    lightbox.classList.add('active');
+                    currentIndex = index;
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+            
+            // Close lightbox when close button is clicked
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close lightbox when clicking outside of the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+            
+            // Navigate to next image
+            lightboxNext.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % galleryItems.length;
+                const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                lightboxImg.src = imgSrc;
+            });
+            
+            // Navigate to previous image
+            lightboxPrev.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                lightboxImg.src = imgSrc;
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+                else if (e.key === 'ArrowRight') {
+                    currentIndex = (currentIndex + 1) % galleryItems.length;
+                    const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                }
+                else if (e.key === 'ArrowLeft') {
+                    currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                    const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                }
+            });
+            
+            // Add swipe gestures for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            lightbox.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            lightbox.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    // Swipe left, go to next
+                    currentIndex = (currentIndex + 1) % galleryItems.length;
+                    const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                }
+                
+                if (touchEndX > touchStartX + 50) {
+                    // Swipe right, go to previous
+                    currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                    const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                }
+            }
+            
+            // For demo purposes only - category buttons
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a real implementation, you would filter the gallery here
+                });
+            });
+        });
+    </script>
+</body>
+</html>
