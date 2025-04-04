@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#121212">
+    <meta name="description" content="Frequently Asked Questions about Insomnia Digital Media photography and videography services.">
+    <title>FAQ - Insomnia Digital Media</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-purple: #7c68ee;
+            --secondary-purple: #9370db;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --text-light: #f8f8f8;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                repeating-linear-gradient(115deg, 
+                rgba(0, 0, 0, 0.3) 0px, 
+                rgba(0, 0, 0, 0.3) 2px, 
+                transparent 2px, 
+                transparent 4px),
+                linear-gradient(to bottom, var(--dark-bg), var(--darker-bg));
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 0.8rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary-purple);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        .page-header {
+            padding-top: 150px;
+            padding-bottom: 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), var(--dark-bg));
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, var(--primary-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+        }
+        
+        /* FAQ Accordion Styles */
+        .faq-container {
+            margin-top: 2rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: rgba(20, 20, 20, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(124, 104, 238, 0.1);
+        }
+        
+        .faq-item.active .faq-question {
+            background-color: rgba(124, 104, 238, 0.15);
+            border-left: 4px solid var(--primary-purple);
+        }
+        
+        .faq-question-text {
+            font-size: 1.1rem;
+        }
+        
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--primary-purple);
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: rgba(15, 15, 15, 0.7);
+        }
+        
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            line-height: 1.8;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .faq-highlight {
+            color: var(--primary-purple);
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-purple), transparent);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            height: 80px;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-purple), var(--secondary-purple));
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(124, 104, 238, 0.5);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fadeIn {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 0.8rem;
+            }
+            
+            .logo {
+                height: 40px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.3rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .page-header {
+                padding-top: 120px;
+            }
+            
+            .faq-section {
+                padding: 2rem 1.5rem 4rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .faq-question-text {
+                font-size: 1rem;
+            }
+            
+            .faq-question {
+                padding: 1.2rem;
+            }
+            
+            .faq-answer-content {
+                padding: 0 1.2rem 1.2rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html"><img src="images/whitelogo.png" alt="Insomnia Digital Media" class="logo"></a>
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="how-to-book.html">HOW TO BOOK</a>
+                <a href="portfolio.html">PORTFOLIO</a>
+                <a href="faq.html" class="active">FAQ</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="page-title">FAQ</h1>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item fadeIn delay-1">
+                <div class="faq-question">
+                    <div class="faq-question-text">how long is the turnaround time?</div>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        photos will be returned to the client within <span class="faq-highlight">4-7 days</span> from when they are taken. please allow up to <span class="faq-highlight">14 days</span> in busier times of year. rush edits can be purchased for an additional fee. video work can take up to <span class="faq-highlight">30 days</span>, but is usually given within <span class="faq-highlight">10-20 business days</span>.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item fadeIn delay-2">
+                <div class="faq-question">
+                    <div class="faq-question-text">can i reschedule?</div>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        rescheduling is <span class="faq-highlight">free</span>, as long as the schedule permits the day you wish to reschedule to.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item fadeIn delay-3">
+                <div class="faq-question">
+                    <div class="faq-question-text">what does edited photos mean?</div>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        the photos look great off of the camera, but we enhance color, remove blemishes and stray hairs, and return the photos to you ready to be posted on all social media with no extra work needed. body modification edits are a <span class="faq-highlight">premium add on</span> and can be purchased for an additional fee.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="faq-item fadeIn delay-4">
+                <div class="faq-question">
+                    <div class="faq-question-text">do you travel?</div>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        absolutely. not only do i travel, but it is my favorite thing to do. while we frequent <span class="faq-highlight">kentucky, west virginia, virginia, tennessee, and ohio</span>... for a fee we will travel <span class="faq-highlight">anywhere in america</span>.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 5 -->
+            <div class="faq-item fadeIn delay-4">
+                <div class="faq-question">
+                    <div class="faq-question-text">can i bring my friend(s) to the shoot?</div>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        it is <span class="faq-highlight">heavily encouraged</span> to bring at least one friend to help advise, make you more comfortable, and help you however they can. i recommend <span class="faq-highlight">2-4 people</span> for any outside shoots. however, large groups of people take away from shoot time. ultimately, it is up to you. bring everyone you need to feel comfortable. any shoots inside the studio are <span class="faq-highlight">limited to 2-4 guests</span> ASIDE from those being photographed.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 6 -->
+            <div class="faq-item fadeIn delay-4">
+                <div class="faq-question">
+                    <div class="faq-question-text">where is your studio?</div>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        the studio is currently located in my home, therefore the location and address will <span class="faq-highlight">not be publicly posted</span> for now until we move to an outside location. for a photo tour of the studio, please <span class="faq-highlight">message us on facebook</span> and the address will be given upon booking.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="images/whitelogo.png" alt="Insomnia Digital Media" class="footer-logo">
+            <div class="social-links">
+                <a href="https://www.facebook.com/insomniaDM" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p class="copyright">© 2025 insomnia digital media. all rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Font Awesome for Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- FAQ JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const answerContent = item.querySelector('.faq-answer-content');
+                
+                // Set initial heights
+                answer.style.maxHeight = '0px';
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = '0px';
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                    
+                    if (item.classList.contains('active')) {
+                        answer.style.maxHeight = answerContent.offsetHeight + 'px';
+                    } else {
+                        answer.style.maxHeight = '0px';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
