@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#121212">
+    <meta name="description" content="Insomnia Digital Media - Photography & Videography services in Eastern Kentucky, Southern West Virginia, Ohio, and East Tennessee.">
     <title>Insomnia Digital Media | Photography & Videography</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,12 +49,14 @@
         
         /* Header & Navigation */
         header {
-            background-color: rgba(10, 10, 10, 0.9);
+            background-color: rgba(10, 10, 10, 0.95);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         
         .navbar {
@@ -198,6 +202,7 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 300px;
             gap: 1.5rem;
             margin-bottom: 3rem;
         }
@@ -208,7 +213,7 @@
             border-radius: 8px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            aspect-ratio: 4/3;
+            cursor: pointer;
         }
         
         .gallery-item:hover {
@@ -392,22 +397,40 @@
                 order: -1;
                 margin-bottom: 2rem;
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-auto-rows: 250px;
+            }
+            
+            .lightbox-next, .lightbox-prev {
+                width: 40px;
+                height: 40px;
+            }
         }
         
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
                 padding: 1rem;
             }
             
             .logo {
+                height: 50px;
                 margin-bottom: 1rem;
             }
             
             .nav-links {
-                gap: 1rem;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.5rem;
                 flex-wrap: wrap;
-                justify-content: center;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+                text-align: center;
             }
             
             .hero-title {
@@ -421,43 +444,220 @@
             .section-title, .about-title {
                 font-size: 2rem;
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-auto-rows: 200px;
+                gap: 1rem;
+            }
+            
+            .about-section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
         }
         
         @media (max-width: 576px) {
+            body {
+                font-size: 0.95rem;
+            }
+            
+            .navbar {
+                flex-direction: column;
+            }
+            
             .gallery-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+                gap: 0.8rem;
             }
             
             .hero-title {
                 font-size: 2rem;
             }
             
-            .gallery-item {
-                aspect-ratio: 16/9;
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .gallery-section, .about-section {
+                padding: 3rem 1rem;
+            }
+            
+            .footer-content {
+                padding: 0 1rem;
+            }
+            
+            .cta-button {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .lightbox-next, .lightbox-prev {
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
             }
         }
         
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 400px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 200px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .lightbox-next, .lightbox-prev {
+                display: none;
+            }
         }
         
-        .fadeIn {
-            animation: fadeIn 1s ease forwards;
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
         
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 3px solid rgba(124, 104, 238, 0.3);
+            box-shadow: 0 0 30px rgba(124, 104, 238, 0.5);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 2001;
+        }
+        
+        .lightbox-close:hover {
+            background-color: rgba(124, 104, 238, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .lightbox-next, .lightbox-prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 2001;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next:hover, .lightbox-prev:hover {
+            background-color: rgba(124, 104, 238, 0.8);
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            padding: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Quick animation for lightbox */
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .lightbox.active .lightbox-content {
+            animation: zoomIn 0.3s ease forwards;
+        }
     </style>
 </head>
 <body>
     <!-- Header & Navigation -->
     <header>
         <nav class="navbar">
-            <img src="whitelogo.png" alt="Insomnia Digital Media" class="logo">
+            <img src="images/whitelogo.png" alt="Insomnia Digital Media" class="logo">
             <div class="nav-links">
                 <a href="#">HOME</a>
                 <a href="how-to-book.html">HOW TO BOOK</a>
@@ -478,24 +678,29 @@
     
     <!-- Gallery Section -->
     <section class="gallery-section">
-        <h2 class="section-title fadeIn">Our Work</h2>
         <div class="gallery-grid">
-            <div class="gallery-item fadeIn delay-1">
+            <div class="gallery-item fadeIn delay-1" data-src="images/DSC00750.jpg">
+                <img src="images/DSC00750.jpg" alt="Photography sample">
+            </div>
+            <div class="gallery-item fadeIn delay-2" data-src="images/DSC00767.jpg">
+                <img src="images/DSC00767.jpg" alt="Photography sample">
+            </div>
+            <div class="gallery-item fadeIn delay-3" data-src="images/DSC01824.jpg">
                 <img src="images/DSC01824.jpg" alt="Photography sample">
             </div>
-            <div class="gallery-item fadeIn delay-2">
+            <div class="gallery-item fadeIn delay-4" data-src="images/DSC03133.jpg">
                 <img src="images/DSC03133.jpg" alt="Photography sample">
             </div>
-            <div class="gallery-item fadeIn delay-3">
+            <div class="gallery-item fadeIn delay-1" data-src="images/DSC03446.jpg">
                 <img src="images/DSC03446.jpg" alt="Photography sample">
             </div>
-            <div class="gallery-item fadeIn delay-4">
+            <div class="gallery-item fadeIn delay-2" data-src="images/DSC03660.jpg">
                 <img src="images/DSC03660.jpg" alt="Photography sample">
             </div>
-            <div class="gallery-item fadeIn delay-1">
+            <div class="gallery-item fadeIn delay-3" data-src="images/DSC05298.jpg">
                 <img src="images/DSC05298.jpg" alt="Photography sample">
             </div>
-            <div class="gallery-item fadeIn delay-2">
+            <div class="gallery-item fadeIn delay-4" data-src="images/DSC05992.jpg">
                 <img src="images/DSC05992.jpg" alt="Photography sample">
             </div>
         </div>
@@ -519,7 +724,7 @@
             </div>
         </div>
         <div class="about-image-container fadeIn delay-2">
-            <img src="images/DSC03660.jpg" alt="Photography equipment" class="about-image">
+            <img src="images/DSC04678.jpg" alt="Photography equipment" class="about-image">
             <div class="image-backdrop"></div>
         </div>
     </section>
@@ -527,18 +732,127 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <img src="logo.png" alt="Insomnia Digital Media" class="footer-logo">
+            <img src="images/whitelogo.png" alt="Insomnia Digital Media" class="footer-logo">
             <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/insomniaDM"><i class="fab fa-facebook-f"></i></a>
             </div>
             <p class="copyright">© 2025 Insomnia Digital Media. All Rights Reserved.</p>
         </div>
     </footer>
     
+<!-- Lightbox Structure -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="Enlarged photography">
+            <div class="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-close">&times;</div>
+        <div class="lightbox-next">&rsaquo;</div>
+        <div class="lightbox-prev">&lsaquo;</div>
+    </div>
+    
     <!-- Font Awesome for Social Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- Lightbox JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            let currentIndex = 0;
+            
+            // Open lightbox when a gallery item is clicked
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                    lightbox.classList.add('active');
+                    currentIndex = index;
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+            
+            // Close lightbox when close button is clicked
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close lightbox when clicking outside of the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            });
+            
+            // Navigate to next image
+            lightboxNext.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % galleryItems.length;
+                const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                lightboxImg.src = imgSrc;
+            });
+            
+            // Navigate to previous image
+            lightboxPrev.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                lightboxImg.src = imgSrc;
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+                else if (e.key === 'ArrowRight') {
+                    currentIndex = (currentIndex + 1) % galleryItems.length;
+                    const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                }
+                else if (e.key === 'ArrowLeft') {
+                    currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                    const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                }
+            });
+            
+            // Add swipe gestures for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            lightbox.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            lightbox.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    // Swipe left, go to next
+                    currentIndex = (currentIndex + 1) % galleryItems.length;
+                    const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                }
+                
+                if (touchEndX > touchStartX + 50) {
+                    // Swipe right, go to previous
+                    currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                    const imgSrc = galleryItems[currentIndex].getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
