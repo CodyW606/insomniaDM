@@ -815,16 +815,6 @@
     <!-- Scroll JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Scroll indicator functionality
-            const scrollArrow = document.querySelector('.scroll-arrow');
-            const gallerySection = document.querySelector('.gallery-section');
-            
-            if (scrollArrow) {
-                scrollArrow.addEventListener('click', function() {
-                    gallerySection.scrollIntoView({ behavior: 'smooth' });
-                });
-            }
-            
             // Lightbox functionality
             const lightbox = document.querySelector('.lightbox');
             const lightboxImg = lightbox.querySelector('img');
