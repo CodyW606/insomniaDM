@@ -132,6 +132,7 @@
             align-items: center;
             animation: bounce 2s infinite;
             z-index: 10;
+            cursor: pointer;
         }
         
         .hero::before {
@@ -147,6 +148,7 @@
             transform: rotate(-45deg);
             animation: bounce 2s infinite;
             z-index: 11;
+            cursor: pointer;
         }
         
         @keyframes bounce {
@@ -785,7 +787,7 @@
             <div class="locations fadeIn delay-3">
                 <h3 class="locations-title">Our Service Areas:</h3>
                 <p>
-                    while we're based out of eastern kentucky, we'll come to you in southern west virginia, southwestern virginia, throughout all of ohio and middle/east tennessee. we've got four wheels, if you want our services, we can make it happen.
+                    while we're based out of eastern kentucky, we'll come to you in southern west virginia (charleston, huntington), southwestern virginia (abingdon, bristol), throughout all of ohio (cincinnati, columbus, cleveland) and middle/east tennessee (knoxville, nashville). we've got four wheels, if you want our services, we can make it happen.
                 </p>
             </div>
         </div>
@@ -820,9 +822,27 @@
     <!-- Font Awesome for Social Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     
-    <!-- Lightbox JavaScript -->
+    <!-- Scroll JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Scroll indicator functionality
+            const scrollIndicator = document.querySelector('.hero::before');
+            const scrollIndicatorBg = document.querySelector('.hero::after');
+            const gallerySection = document.querySelector('.gallery-section');
+            
+            function scrollToGallery() {
+                gallerySection.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', scrollToGallery);
+            }
+            
+            if (scrollIndicatorBg) {
+                scrollIndicatorBg.addEventListener('click', scrollToGallery);
+            }
+            
+            // Lightbox functionality
             const lightbox = document.querySelector('.lightbox');
             const lightboxImg = lightbox.querySelector('img');
             const lightboxClose = document.querySelector('.lightbox-close');
