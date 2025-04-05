@@ -117,41 +117,42 @@
             overflow: hidden;
         }
         
-        .scroll-indicator {
+        .scroll-arrow {
             position: absolute;
-            bottom: 10px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
             cursor: pointer;
             z-index: 12;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: rgba(124, 104, 238, 0.2);
+            border-radius: 50%;
         }
         
-        .scroll-indicator::after {
+        .scroll-arrow:before {
             content: '';
-            width: 15px;
-            height: 15px;
+            width: 12px;
+            height: 12px;
             border-left: 3px solid rgba(255, 255, 255, 0.8);
             border-bottom: 3px solid rgba(255, 255, 255, 0.8);
-            transform: rotate(-45deg) translate(2px, -2px);
+            transform: rotate(-45deg);
+            display: block;
             animation: bounce 2s infinite;
         }
         
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
-                transform: rotate(-45deg) translate(0, 0);
+                transform: rotate(-45deg) translateY(0);
             }
             40% {
-                transform: rotate(-45deg) translate(-5px, -5px);
+                transform: rotate(-45deg) translateY(5px);
             }
             60% {
-                transform: rotate(-45deg) translate(-2px, -2px);
+                transform: rotate(-45deg) translateY(3px);
             }
         }
         
@@ -815,32 +816,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Scroll indicator functionality
-            const scrollArrow = document.querySelector('.scroll-indicator');
+            const scrollArrow = document.querySelector('.scroll-arrow');
             const gallerySection = document.querySelector('.gallery-section');
-            const hero = document.querySelector('.hero');
             
-            // Make the entire hero::before and hero::after clickable
-            hero.addEventListener('click', function(e) {
-                // Check if click was on or near the arrow area (bottom center of hero section)
-                const heroRect = hero.getBoundingClientRect();
-                const clickY = e.clientY;
-                const clickX = e.clientX;
-                
-                // If click is in the bottom 15% and middle 20% of hero section, treat as arrow click
-                if (clickY > (heroRect.top + heroRect.height * 0.85) && 
-                    clickX > (heroRect.left + heroRect.width * 0.4) && 
-                    clickX < (heroRect.left + heroRect.width * 0.6)) {
-                    scrollToGallery();
-                }
-            });
-            
-            // Direct scroll indicator click
             if (scrollArrow) {
-                scrollArrow.addEventListener('click', scrollToGallery);
-            }
-            
-            function scrollToGallery() {
-                gallerySection.scrollIntoView({ behavior: 'smooth' });
+                scrollArrow.addEventListener('click', function() {
+                    gallerySection.scrollIntoView({ behavior: 'smooth' });
+                });
             }
             
             // Lightbox functionality
