@@ -107,14 +107,62 @@
             width: 100%;
         }
         
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            border-radius: 5px;
+            margin-top: 5px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .dropdown-content a {
+            color: var(--text-light);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(124, 104, 238, 0.2);
+            color: var(--primary-purple);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .mobile-nav-toggle {
+            display: none;
+        }
+        
+        .mobile-dropdown {
+            display: none;
+        }
+        
         /* Hero Section */
         .hero {
-            height: 85vh; /* Reduced from 100vh to 85vh */
+            height: 65vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            margin-bottom: 0;
         }
         
         .hero::before {
@@ -175,7 +223,7 @@
         
         /* Gallery Section */
         .gallery-section {
-            padding: 6rem 1.5rem 4rem;
+            padding: 2rem 1.5rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -252,7 +300,7 @@
         
         /* About Section */
         .about-section {
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
@@ -384,182 +432,6 @@
             opacity: 0.7;
         }
         
-        /* Media Queries */
-        @media (max-width: 992px) {
-            .about-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-content {
-                padding-right: 0;
-            }
-            
-            .about-image-container {
-                order: -1;
-                margin-bottom: 2rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                grid-auto-rows: 250px;
-            }
-            
-            .lightbox-next, .lightbox-prev {
-                width: 40px;
-                height: 40px;
-            }
-        }
-        
-        /* Mobile Navigation Improvements */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0.8rem;
-                margin-bottom: 0;
-            }
-            
-            .logo {
-                height: 40px;
-                margin-bottom: 0.5rem;
-            }
-            
-            .nav-links {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                padding: 0;
-                margin: 0;
-            }
-            
-            .nav-links a {
-                font-size: 0.85rem;
-                padding: 0.5rem 0.3rem;
-                letter-spacing: 0.5px;
-                margin: 0;
-                width: auto;
-            }
-            
-            /* Cleaner mobile hero section */
-            .hero {
-                height: 80vh; /* Reduced from 90vh to 80vh */
-                padding-top: 70px; /* Keeping the same top padding */
-            }
-            
-            .hero-content {
-                padding: 1rem;
-            }
-            
-            .hero-title {
-                font-size: 2.2rem;
-                margin-bottom: 1rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            /* Spacing adjustments for mobile */
-            .gallery-section {
-                padding: 3rem 1rem 2rem;
-            }
-            
-            .about-section {
-                padding: 2rem 1rem;
-            }
-            
-            footer {
-                padding: 2rem 1rem;
-            }
-            
-            /* Button sizing for mobile */
-            .cta-button {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .navbar {
-                flex-direction: column;
-                padding: 0.5rem;
-            }
-            
-            .logo {
-                margin-bottom: 0.5rem;
-            }
-            
-            .nav-links a {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.2rem;
-            }
-            
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .hero {
-                height: 75vh; /* Reduced from default for small screens */
-            }
-            
-            .gallery-section, .about-section {
-                padding: 2rem 0.75rem;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 150px;
-                gap: 0.5rem;
-            }
-            
-            .nav-links {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                gap: 0.3rem;
-            }
-            
-            .nav-links a {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.2rem;
-                margin: 0;
-                letter-spacing: 0;
-            }
-            
-            .hero-title {
-                font-size: 1.6rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .lightbox-next, .lightbox-prev {
-                width: 30px;
-                height: 30px;
-                font-size: 1.3rem;
-            }
-            
-            .about-title {
-                font-size: 1.5rem;
-            }
-            
-            .about-text {
-                font-size: 0.9rem;
-                line-height: 1.6;
-            }
-            
-            .locations {
-                padding: 1rem;
-                font-size: 0.85rem;
-            }
-        }
-        
         /* Lightbox */
         .lightbox {
             position: fixed;
@@ -673,6 +545,277 @@
         .lightbox.active .lightbox-content {
             animation: zoomIn 0.3s ease forwards;
         }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fadeIn {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                padding-right: 0;
+            }
+            
+            .about-image-container {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-auto-rows: 250px;
+            }
+            
+            .lightbox-next, .lightbox-prev {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        /* Mobile Navigation Improvements */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem;
+                margin-bottom: 0;
+            }
+            
+            .logo {
+                height: 40px;
+                margin-bottom: 0.5rem;
+            }
+            
+            /* Mobile Navigation */
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .mobile-nav a, .mobile-dropdown {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.3rem;
+                letter-spacing: 0.5px;
+                margin: 0;
+                width: auto;
+                color: var(--text-light);
+                text-decoration: none;
+                font-family: 'Orbitron', sans-serif;
+                font-weight: 400;
+                position: relative;
+            }
+            
+            .mobile-nav a::after, .mobile-dropdown::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+                transition: width 0.3s ease;
+            }
+            
+            .mobile-nav a:hover::after, .mobile-dropdown:hover::after {
+                width: 100%;
+            }
+            
+            .mobile-nav a:hover, .mobile-dropdown:hover {
+                color: var(--primary-purple);
+            }
+            
+            .mobile-dropdown {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.3rem;
+            }
+            
+            .mobile-dropdown-content {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: rgba(10, 10, 10, 0.95);
+                min-width: 160px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+            
+            .mobile-dropdown-content a {
+                color: var(--text-light);
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                font-size: 0.85rem;
+            }
+            
+            .mobile-dropdown-content a:hover {
+                background-color: rgba(124, 104, 238, 0.2);
+                color: var(--primary-purple);
+            }
+            
+            .mobile-dropdown-active .mobile-dropdown-content {
+                display: block;
+            }
+            
+            /* Cleaner mobile hero section */
+            .hero {
+                height: 60vh;
+                padding-top: 70px; /* Account for fixed navbar */
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Spacing adjustments for mobile */
+            .gallery-section {
+                padding: 1.5rem 1rem 2rem;
+            }
+            
+            .about-section {
+                padding: 2rem 1rem;
+            }
+            
+            footer {
+                padding: 2rem 1rem;
+            }
+            
+            /* Button sizing for mobile */
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar {
+                flex-direction: column;
+                padding: 0.5rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .mobile-nav a, .mobile-dropdown {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.2rem;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero {
+                height: 55vh;
+            }
+            
+            .gallery-section, .about-section {
+                padding: 1rem 0.75rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+                gap: 0.5rem;
+            }
+            
+            .mobile-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 0.3rem;
+            }
+            
+            .mobile-nav a, .mobile-dropdown {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.2rem;
+                margin: 0;
+                letter-spacing: 0;
+            }
+            
+            .hero-title {
+                font-size: 1.6rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .lightbox-next, .lightbox-prev {
+                width: 30px;
+                height: 30px;
+                font-size: 1.3rem;
+            }
+            
+            .about-title {
+                font-size: 1.5rem;
+            }
+            
+            .about-text {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
+            .locations {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -680,11 +823,28 @@
     <header>
         <nav class="navbar">
             <a href="index.html"><img src="images/whitelogo.png" alt="Insomnia Digital Media" class="logo"></a>
-            <div class="nav-links">
-                <a href="#">HOME</a>
-                <a href="how-to-book.html">HOW TO BOOK</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="nav-links desktop-nav">
+                <a href="index.html">HOME</a>
                 <a href="portfolio.html">PORTFOLIO</a>
+                <a href="how-to-book.html">HOW TO BOOK</a>
+                <a href="about.html">ABOUT US</a>
                 <a href="faq.html">FAQ</a>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="nav-links mobile-nav">
+                <a href="index.html">HOME</a>
+                <a href="portfolio.html">PORTFOLIO</a>
+                <a href="how-to-book.html">BOOKING</a>
+                <div class="mobile-dropdown">
+                    MORE <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+                    <div class="mobile-dropdown-content">
+                        <a href="about.html">ABOUT US</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -694,7 +854,7 @@
         <div class="hero-content">
             <h1 class="hero-title fadeIn">Capture Your Vision</h1>
             <p class="hero-subtitle fadeIn delay-1">premium photography & videography services</p>
-            <a href="how-to-book.html" class="cta-button fadeIn delay-2">Book Now</a>
+            <a href="how-to-book.html" class="cta-button fadeIn delay-2">BOOK NOW</a>
         </div>
     </section>
     
@@ -756,13 +916,13 @@
         <div class="footer-content">
             <img src="images/whitelogo.png" alt="Insomnia Digital Media" class="footer-logo">
             <div class="social-links">
-                <a href="https://www.facebook.com/insomniaDM"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/insomniaDM" target="_blank"><i class="fab fa-facebook-f"></i></a>
             </div>
-            <p class="copyright">© 2025 Insomnia Digital Media. All Rights Reserved.</p>
+            <p class="copyright">© 2025 insomnia digital media. all rights reserved.</p>
         </div>
     </footer>
     
-<!-- Lightbox Structure -->
+    <!-- Lightbox Structure -->
     <div class="lightbox">
         <div class="lightbox-content">
             <img src="" alt="Enlarged photography">
@@ -773,12 +933,26 @@
         <div class="lightbox-prev">&lsaquo;</div>
     </div>
     
-    <!-- Font Awesome for Social Icons -->
+<!-- Font Awesome for Social Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     
-    <!-- Lightbox JavaScript -->
+    <!-- Lightbox and Mobile Navigation JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Dropdown Toggle
+            const mobileDropdown = document.querySelector('.mobile-dropdown');
+            
+            mobileDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('mobile-dropdown-active');
+            });
+            
+            // Close dropdown when clicking elsewhere
+            document.addEventListener('click', function() {
+                mobileDropdown.classList.remove('mobile-dropdown-active');
+            });
+            
+            // Lightbox functionality
             const lightbox = document.querySelector('.lightbox');
             const lightboxImg = lightbox.querySelector('img');
             const lightboxClose = document.querySelector('.lightbox-close');
