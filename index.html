@@ -154,6 +154,15 @@
             display: none;
         }
         
+        /* Desktop and Mobile Nav Display */
+        .desktop-nav {
+            display: flex;
+        }
+        
+        .mobile-nav {
+            display: none;
+        }
+        
         /* Hero Section */
         .hero {
             height: 65vh;
@@ -601,7 +610,7 @@
             
             /* Mobile Navigation */
             .desktop-nav {
-                display: none;
+                display: none !important;
             }
             
             .mobile-nav {
@@ -829,10 +838,10 @@
                 <a href="index.html">HOME</a>
                 <a href="portfolio.html">PORTFOLIO</a>
                 <a href="how-to-book.html">HOW TO BOOK</a>
-                <a href="about.html">ABOUT US</a>
                 <div class="dropdown">
                     <a href="#">MORE</a>
                     <div class="dropdown-content">
+                        <a href="about.html">ABOUT US</a>
                         <a href="faq.html">FAQ</a>
                     </div>
                 </div>
