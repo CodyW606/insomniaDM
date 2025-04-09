@@ -115,6 +115,59 @@
             width: 100%;
         }
         
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown > a {
+            display: inline-block;
+            padding: 0.5rem 0;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            border-radius: 5px;
+            margin-top: 5px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .dropdown-content a {
+            color: var(--text-light);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(124, 104, 238, 0.2);
+            color: var(--primary-purple);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Desktop and Mobile Nav Display */
+        .desktop-nav {
+            display: flex;
+        }
+        
+        .mobile-nav {
+            display: none;
+        }
+        
         /* Main Content */
         .page-header {
             padding-top: 180px;
@@ -294,6 +347,7 @@
             }
         }
         
+        /* Mobile Navigation Improvements */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -303,6 +357,89 @@
             .logo {
                 height: 40px;
                 margin-bottom: 0.5rem;
+            }
+            
+            /* Mobile Navigation */
+            .desktop-nav {
+                display: none !important;
+            }
+            
+            .mobile-nav {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .mobile-nav a, .mobile-dropdown {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.3rem;
+                letter-spacing: 0.5px;
+                margin: 0;
+                width: auto;
+                color: var(--text-light);
+                text-decoration: none;
+                font-family: 'Orbitron', sans-serif;
+                font-weight: 400;
+                position: relative;
+            }
+            
+            .mobile-nav a::after, .mobile-dropdown::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+                transition: width 0.3s ease;
+            }
+            
+            .mobile-nav a:hover::after, .mobile-dropdown:hover::after {
+                width: 100%;
+            }
+            
+            .mobile-nav a:hover, .mobile-dropdown:hover {
+                color: var(--primary-purple);
+            }
+            
+            .mobile-dropdown {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.3rem;
+            }
+            
+            .mobile-dropdown-content {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: rgba(10, 10, 10, 0.95);
+                min-width: 160px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+            
+            .mobile-dropdown-content a {
+                color: var(--text-light);
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                font-size: 0.85rem;
+            }
+            
+            .mobile-dropdown-content a:hover {
+                background-color: rgba(124, 104, 238, 0.2);
+                color: var(--primary-purple);
+            }
+            
+            .mobile-dropdown-active .mobile-dropdown-content {
+                display: block;
             }
             
             .nav-links {
@@ -351,11 +488,33 @@
     <header>
         <nav class="navbar">
             <a href="index.html"><img src="images/whitelogo.png" alt="Insomnia Digital Media" class="logo"></a>
-            <div class="nav-links">
+            
+            <!-- Desktop Navigation -->
+            <div class="nav-links desktop-nav">
                 <a href="index.html">HOME</a>
-                <a href="how-to-book.html">HOW TO BOOK</a>
                 <a href="portfolio.html">PORTFOLIO</a>
-                <a href="faq.html" class="active">FAQ</a>
+                <a href="how-to-book.html">HOW TO BOOK</a>
+                <div class="dropdown">
+                    <a href="#" class="active">MORE</a>
+                    <div class="dropdown-content">
+                        <a href="about.html">ABOUT US</a>
+                        <a href="faq.html" class="active">FAQ</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="nav-links mobile-nav">
+                <a href="index.html">HOME</a>
+                <a href="portfolio.html">PORTFOLIO</a>
+                <a href="how-to-book.html">BOOKING</a>
+                <div class="mobile-dropdown">
+                    <span class="active">MORE</span> <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+                    <div class="mobile-dropdown-content">
+                        <a href="about.html">ABOUT US</a>
+                        <a href="faq.html" class="active">FAQ</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -410,6 +569,19 @@
             <!-- FAQ Item 4 -->
             <div class="faq-item fadeIn delay-4">
                 <div class="faq-question">
+                    <div class="faq-question-text">do you do weddings?</div>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        at this time, no. we don't feel confident enough to shoot someones most special day at a premium price and do a great job.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 5 -->
+            <div class="faq-item fadeIn delay-4">
+                <div class="faq-question">
                     <div class="faq-question-text">do you travel?</div>
                     <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
                 </div>
@@ -420,7 +592,20 @@
                 </div>
             </div>
             
-            <!-- FAQ Item 5 -->
+            <!-- FAQ Item 6 -->
+            <div class="faq-item fadeIn delay-4">
+                <div class="faq-question">
+                    <div class="faq-question-text">what are the prices?</div>
+                    <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        we don't hide our prices, and we have no reason to. they'll be listed soon with all of our available packages on the how to book page.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 7 -->
             <div class="faq-item fadeIn delay-4">
                 <div class="faq-question">
                     <div class="faq-question-text">can i bring my friend(s) to the shoot?</div>
@@ -433,7 +618,7 @@
                 </div>
             </div>
             
-            <!-- FAQ Item 6 -->
+            <!-- FAQ Item 8 -->
             <div class="faq-item fadeIn delay-4">
                 <div class="faq-question">
                     <div class="faq-question-text">where is your studio?</div>
@@ -462,9 +647,25 @@
     <!-- Font Awesome for Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     
-    <!-- FAQ JavaScript -->
+    <!-- JavaScript for Mobile Navigation and FAQ -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Dropdown Toggle
+            const mobileDropdown = document.querySelector('.mobile-dropdown');
+            
+            if (mobileDropdown) {
+                mobileDropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('mobile-dropdown-active');
+                });
+                
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', function() {
+                    mobileDropdown.classList.remove('mobile-dropdown-active');
+                });
+            }
+            
+            // FAQ functionality
             const faqItems = document.querySelectorAll('.faq-item');
             
             faqItems.forEach(item => {
