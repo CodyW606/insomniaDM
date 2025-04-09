@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#121212">
+    <meta name="description" content="About Insomnia Digital Media - Photography & Videography services in Eastern Kentucky, Southern West Virginia, Ohio, and East Tennessee.">
+    <title>About Us - Insomnia Digital Media</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-purple: #7c68ee;
+            --secondary-purple: #9370db;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --text-light: #f8f8f8;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                repeating-linear-gradient(115deg, 
+                rgba(0, 0, 0, 0.3) 0px, 
+                rgba(0, 0, 0, 0.3) 2px, 
+                transparent 2px, 
+                transparent 4px),
+                linear-gradient(to bottom, var(--dark-bg), var(--darker-bg));
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 0.8rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary-purple);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown > a {
+            display: inline-block;
+            padding: 0.5rem 0;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            border-radius: 5px;
+            margin-top: 5px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .dropdown-content a {
+            color: var(--text-light);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(124, 104, 238, 0.2);
+            color: var(--primary-purple);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Desktop and Mobile Nav Display */
+        .desktop-nav {
+            display: flex;
+        }
+        
+        .mobile-nav {
+            display: none;
+        }
+        
+        /* Main Content */
+        .page-header {
+            padding-top: 180px;
+            padding-bottom: 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), var(--dark-bg));
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, var(--primary-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .coming-soon-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+            text-align: center;
+        }
+        
+        .coming-soon-card {
+            background-color: rgba(20, 20, 20, 0.7);
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(124, 104, 238, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .coming-soon-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+        }
+        
+        .coming-soon-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        
+        .coming-soon-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .social-teaser {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(124, 104, 238, 0.2);
+        }
+        
+        .social-teaser-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-purple), transparent);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            height: 80px;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-purple), var(--secondary-purple));
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(124, 104, 238, 0.5);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fadeIn {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .coming-soon-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Mobile Navigation Improvements */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 0.8rem;
+            }
+            
+            .logo {
+                height: 40px;
+                margin-bottom: 0.5rem;
+            }
+            
+            /* Mobile Navigation */
+            .desktop-nav {
+                display: none !important;
+            }
+            
+            .mobile-nav {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .mobile-nav a, .mobile-dropdown {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.3rem;
+                letter-spacing: 0.5px;
+                margin: 0;
+                width: auto;
+                color: var(--text-light);
+                text-decoration: none;
+                font-family: 'Orbitron', sans-serif;
+                font-weight: 400;
+                position: relative;
+            }
+            
+            .mobile-nav a::after, .mobile-dropdown::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+                transition: width 0.3s ease;
+            }
+            
+            .mobile-nav a:hover::after, .mobile-dropdown:hover::after {
+                width: 100%;
+            }
+            
+            .mobile-nav a:hover, .mobile-dropdown:hover {
+                color: var(--primary-purple);
+            }
+            
+            .mobile-dropdown {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.3rem;
+            }
+            
+            .mobile-dropdown-content {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: rgba(10, 10, 10, 0.95);
+                min-width: 160px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+            
+            .mobile-dropdown-content a {
+                color: var(--text-light);
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                font-size: 0.85rem;
+            }
+            
+            .mobile-dropdown-content a:hover {
+                background-color: rgba(124, 104, 238, 0.2);
+                color: var(--primary-purple);
+            }
+            
+            .mobile-dropdown-active .mobile-dropdown-content {
+                display: block;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.3rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .page-header {
+                padding-top: 150px;
+            }
+            
+            .coming-soon-section {
+                padding: 2rem 1.5rem 4rem;
+            }
+            
+            .coming-soon-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .coming-soon-title {
+                font-size: 1.5rem;
+            }
+            
+            .coming-soon-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html"><img src="images/whitelogo.png" alt="Insomnia Digital Media" class="logo"></a>
+            
+            <!-- Desktop Navigation -->
+            <div class="nav-links desktop-nav">
+                <a href="index.html">HOME</a>
+                <a href="portfolio.html">PORTFOLIO</a>
+                <a href="how-to-book.html">HOW TO BOOK</a>
+                <div class="dropdown">
+                    <a href="#" class="active">MORE</a>
+                    <div class="dropdown-content">
+                        <a href="about-us.html" class="active">ABOUT US</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="nav-links mobile-nav">
+                <a href="index.html">HOME</a>
+                <a href="portfolio.html">PORTFOLIO</a>
+                <a href="how-to-book.html">BOOKING</a>
+                <div class="mobile-dropdown">
+                    <span class="active">MORE</span> <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 2px;"></i>
+                    <div class="mobile-dropdown-content">
+                        <a href="about-us.html" class="active">ABOUT US</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1 class="page-title">ABOUT US</h1>
+    </section>
+    
+    <!-- Coming Soon Section -->
+    <section class="coming-soon-section">
+        <div class="coming-soon-card fadeIn">
+            <h2 class="coming-soon-title fadeIn delay-1">coming soon</h2>
+            <p class="coming-soon-message fadeIn delay-2">
+                this page will be completed soon.
+            </p>
+            
+            <div class="social-teaser fadeIn delay-3">
+                <p class="social-teaser-text">
+                    in the meantime, follow us on social media or browse the rest of the site to see our latest work and get to know us better.
+                </p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/insomniaDM" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="images/whitelogo.png" alt="Insomnia Digital Media" class="footer-logo">
+            <div class="social-links">
+                <a href="https://www.facebook.com/insomniaDM" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p class="copyright">© 2025 insomnia digital media. all rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Font Awesome for Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- JavaScript for Mobile Navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Dropdown Toggle
+            const mobileDropdown = document.querySelector('.mobile-dropdown');
+            
+            if (mobileDropdown) {
+                mobileDropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('mobile-dropdown-active');
+                });
+                
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', function() {
+                    mobileDropdown.classList.remove('mobile-dropdown-active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
