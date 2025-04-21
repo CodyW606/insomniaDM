@@ -265,31 +265,9 @@
             opacity: 1;
         }
         
-        /* Categories */
-        .portfolio-categories {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-        
-        .category-btn {
-            padding: 0.5rem 1.5rem;
-            background-color: rgba(124, 104, 238, 0.1);
-            border: 1px solid rgba(124, 104, 238, 0.3);
-            border-radius: 30px;
-            color: var(--text-light);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .category-btn:hover, .category-btn.active {
-            background-color: var(--primary-purple);
-            border-color: var(--primary-purple);
-            box-shadow: 0 5px 15px rgba(124, 104, 238, 0.3);
+        /* Hidden placeholder items */
+        .gallery-item.placeholder {
+            display: none;
         }
         
         /* Lightbox */
@@ -617,11 +595,6 @@
             .construction-notice {
                 padding: 1.5rem 1rem;
             }
-            
-            .category-btn {
-                padding: 0.4rem 1rem;
-                font-size: 0.8rem;
-            }
         }
         
         @media (max-width: 400px) {
@@ -684,16 +657,6 @@
             </p>
         </div>
         
-        <!-- Portfolio Categories (for future use) -->
-        <div class="portfolio-categories fadeIn delay-1">
-            <button class="category-btn active">all</button>
-            <button class="category-btn">portraits</button>
-            <button class="category-btn">events</button>
-            <button class="category-btn">sports</button>
-            <button class="category-btn">lifestyle</button>
-            <button class="category-btn">video</button>
-        </div>
-        
         <!-- Portfolio Gallery -->
         <div class="portfolio-gallery">
             <div class="gallery-item fadeIn delay-1" data-src="images/DSC00750.jpg">
@@ -719,6 +682,32 @@
             </div>
             <div class="gallery-item fadeIn delay-8" data-src="images/DSC05992.jpg">
                 <img src="images/DSC05992.jpg" alt="Insomnia Digital Media portfolio image">
+            </div>
+            
+            <!-- Placeholder portfolio items that will only display when the images exist -->
+            <div class="gallery-item placeholder fadeIn delay-1" data-src="images/portfolio1.jpg">
+                <img src="images/portfolio1.jpg" alt="Insomnia Digital Media portfolio image" onerror="this.parentElement.style.display='none'">
+            </div>
+            <div class="gallery-item placeholder fadeIn delay-2" data-src="images/portfolio2.jpg">
+                <img src="images/portfolio2.jpg" alt="Insomnia Digital Media portfolio image" onerror="this.parentElement.style.display='none'">
+            </div>
+            <div class="gallery-item placeholder fadeIn delay-3" data-src="images/portfolio3.jpg">
+                <img src="images/portfolio3.jpg" alt="Insomnia Digital Media portfolio image" onerror="this.parentElement.style.display='none'">
+            </div>
+            <div class="gallery-item placeholder fadeIn delay-4" data-src="images/portfolio4.jpg">
+                <img src="images/portfolio4.jpg" alt="Insomnia Digital Media portfolio image" onerror="this.parentElement.style.display='none'">
+            </div>
+            <div class="gallery-item placeholder fadeIn delay-5" data-src="images/portfolio5.jpg">
+                <img src="images/portfolio5.jpg" alt="Insomnia Digital Media portfolio image" onerror="this.parentElement.style.display='none'">
+            </div>
+            <div class="gallery-item placeholder fadeIn delay-6" data-src="images/portfolio6.jpg">
+                <img src="images/portfolio6.jpg" alt="Insomnia Digital Media portfolio image" onerror="this.parentElement.style.display='none'">
+            </div>
+            <div class="gallery-item placeholder fadeIn delay-7" data-src="images/portfolio7.jpg">
+                <img src="images/portfolio7.jpg" alt="Insomnia Digital Media portfolio image" onerror="this.parentElement.style.display='none'">
+            </div>
+            <div class="gallery-item placeholder fadeIn delay-8" data-src="images/portfolio8.jpg">
+                <img src="images/portfolio8.jpg" alt="Insomnia Digital Media portfolio image" onerror="this.parentElement.style.display='none'">
             </div>
         </div>
     </section>
@@ -771,7 +760,7 @@
             const lightboxClose = document.querySelector('.lightbox-close');
             const lightboxNext = document.querySelector('.lightbox-next');
             const lightboxPrev = document.querySelector('.lightbox-prev');
-            const galleryItems = document.querySelectorAll('.gallery-item');
+            const galleryItems = document.querySelectorAll('.gallery-item:not(.placeholder)');
             let currentIndex = 0;
             
             // Open lightbox when a gallery item is clicked
@@ -861,3 +850,30 @@
                     lightboxImg.src = imgSrc;
                 }
             }
+            
+            // Check if portfolio images exist and display them
+            const placeholderItems = document.querySelectorAll('.gallery-item.placeholder');
+            placeholderItems.forEach(item => {
+                const img = item.querySelector('img');
+                img.onerror = function() {
+                    item.style.display = 'none';
+                };
+                
+                img.onload = function() {
+                    item.classList.remove('placeholder');
+                    // Add click event listener for the lightbox
+                    item.addEventListener('click', function() {
+                        const imgSrc = this.getAttribute('data-src');
+                        lightboxImg.src = imgSrc;
+                        lightbox.classList.add('active');
+                        // Update gallery items and recalculate index
+                        const updatedGalleryItems = document.querySelectorAll('.gallery-item:not(.placeholder)');
+                        currentIndex = Array.from(updatedGalleryItems).indexOf(this);
+                        document.body.style.overflow = 'hidden';
+                    });
+                };
+            });
+        });
+    </script>
+</body>
+</html>
